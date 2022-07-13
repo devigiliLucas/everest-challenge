@@ -1,5 +1,4 @@
 <!-- Componente que serviria para simular o carregamento do modal. 
-
 Não implementado por dificuldades enfrentadas no javascript -->
 
 <!-- <template>
