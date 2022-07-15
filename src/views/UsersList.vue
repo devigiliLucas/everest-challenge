@@ -38,7 +38,7 @@
       v-show="modal"
       id="modal"
       @closeModal="closeModal"
-      :dados="this.dadosPessoais"
+      :dados="dadosPessoais"
     />
   </div>
 </template>

@@ -14,7 +14,7 @@
       <div id="rightColumn">
         <div id="cel">
           <label>Celular</label>
-          <p class="dados">{{ dados.phone | cell }}</p>
+          <p class="dados">{{ dados.phone | maskCell }}</p>
         </div>
 
         <div id="ctt">
@@ -33,7 +33,7 @@
       <div id="leftColumn">
         <div id="cpf">
           <label>CPF</label>
-          <p class="dados">{{ dados.cpf | cpf }}</p>
+          <p class="dados">{{ dados.cpf | maskCpf }}</p>
         </div>
 
         <div id="name">
@@ -64,10 +64,10 @@ export default {
         },
     },
     filters: {
-        cpf(cpf) {
+        maskCpf(cpf) {
             return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
         },
-        cell(cell) {
+        maskCell(cell) {
             return cell.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
         },
     },
