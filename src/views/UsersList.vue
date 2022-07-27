@@ -1,5 +1,12 @@
 <template>
   <div id="userList">
+     <div id="btnCadastro">
+      <input
+        type="button"
+        value="Cadastrar novo usuário"
+        class="btnCadastro click"
+      />
+    </div>
     <div class="container">
       <div id="header">
         <p class="headerCpf margin">CPF</p>
@@ -12,7 +19,7 @@
               <li class="cpf margin">
                 {{ user.cpf | VMask(mask) }}
               </li>
-            </div>
+            </div> 
             <div id="nome">
               <li class="name margin">{{ user.fullname }}</li>
             </div>
@@ -28,7 +35,7 @@
 
     <jw-pagination
       :labels="customLabels"
-      :pageSize="10"
+      :pageSize="9"
       :maxPages="4"
       :items="dataUsers"
       @changePage="onChangePage"
@@ -87,10 +94,10 @@ export default {
     },
   },
 
-  async mounted() {
+   async mounted() {
     const response = await axios.get(this.url);
     this.dataUsers = response.data.users;
-  },
+  },  
 };
 </script>
 
@@ -101,6 +108,27 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#btnCadastro {
+  height: 15ch;
+  width: 50vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnCadastro {
+  height: 60px;
+  width: 220px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(224, 43, 87);
+  border: transparent;
+  border-radius: 10px;
+}
+
+.btnCadastro:hover {
+  background-color: rgb(199 18 62);
 }
 
 ::v-deep .page-number {

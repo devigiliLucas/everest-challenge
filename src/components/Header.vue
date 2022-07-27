@@ -18,7 +18,7 @@ export default {
 <style scoped>
   .nav-container{
     height: 7ch;
-    width: 100vw;
+    width: 100%;
     background-color: rgb(224, 43, 87);
     display: flex;
     flex-direction: row;

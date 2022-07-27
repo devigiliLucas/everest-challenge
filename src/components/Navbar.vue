@@ -1,27 +1,31 @@
 <template>
   <header>
     <div id="btnNav">
-      <div id="rawBtn">
-        <section id="rawBtnNav">
-          <input
-            type="button"
-            value="Cadastro"
-            class="rawBtnNav disabled"
-            disabled
-          />
+      <div id="btn">
+        <section id="btnNavRegister">
+
+          <button @click="btnCadastro" class="button btnClickCadastro" v-if="cadastroClick">
+            <router-link to="/register" class="click clickBtn">Cadastro</router-link>
+          </button>
+
+          <button @click="rawBntCadastro" class="button" v-else>
+            <router-link to="/register" class="rawBtnNav click">Cadastro</router-link>
+          </button>
+
         </section>
 
-        <section id="rawBtnNav">
-          <input type="button" value="Listagem" class="rawBtnNav click" />
+        <section id="btnNavUsers">
+
+          <Button @click="bntListagem" class="button btnClickListagem" v-if="listagemClick">
+            <router-link to="/" class="click clickBtn">Listagem</router-link>
+          </Button>
+
+          <Button @click="rawBntListagem" class="button" v-else>
+            <router-link to="/" class="rawBtnNav click">Listagem</router-link>
+          </Button>
+
         </section>
       </div>
-    </div>
-    <div id="btnCadastro">
-      <input
-        type="button"
-        value="Cadastrar novo usuário"
-        class="btnCadastro click"
-      />
     </div>
   </header>
 </template>
@@ -29,27 +33,60 @@
 <script>
 export default {
   name: "NavBar",
-
   data() {
     return {
       cadastro: "",
       listagem: "",
+
+      cadastroClick: false,
+      listagemClick: true,
     };
+  },
+  methods: {
+    rawBntCadastro() {
+      this.cadastroClick = true;
+      this.listagemClick = false;
+    },
+    rawBntListagem() {
+      this.cadastroClick = false;
+      this.listagemClick = true;
+    }
   },
 };
 </script>
 
 <style scoped>
 header {
-  height: 25ch;
+  height: 15ch;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
 }
 
-#rawBtn {
+.button {
+  background-color: transparent;
+  height: 5ch;
+  width: 10vw;
+  border: none;
+}
+
+.btnClickCadastro {
+  font-weight: 700;
+  border-bottom: 3px solid black;
+}
+
+.btnClickListagem {
+  font-weight: 700;
+  border-bottom: 3px solid black;
+}
+
+#btn {
+  width: 15vw;
+  height: 5ch;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .rawBtnNav {
@@ -58,6 +95,13 @@ header {
   font-size: 17px;
   background-color: transparent;
   border: transparent;
+  text-decoration: none;
+  color: black;
+}
+
+.clickBtn {
+  text-decoration: none;
+  color: black;
 }
 
 .btnNav {
@@ -72,19 +116,5 @@ header {
   width: 40vw;
   display: flex;
   justify-content: end;
-}
-
-.btnCadastro {
-  height: 60px;
-  width: 220px;
-  font-size: 16px;
-  color: white;
-  background-color: rgb(224, 43, 87);
-  border: transparent;
-  border-radius: 10px;
-}
-
-.btnCadastro:hover {
-  background-color: rgb(199 18 62);
 }
 </style>
