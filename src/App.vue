@@ -3,7 +3,7 @@
     <Header />
     <Navbar />
     <div class="view-container">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
@@ -12,17 +12,18 @@
 import Header from "./components/Header.vue"
 import Navbar from "./components/Navbar.vue"
 
+
 export default {
   name: 'App',
   data() {
     return {
-      headerTitle: "Usuários"
+      headerTitle: "Usuários",
     }
   },
   components: {
     Header,
-    Navbar
-  }
+    Navbar,
+},
 }
 </script>
 
@@ -31,7 +32,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .click {
@@ -41,5 +42,4 @@ export default {
 .disabled {
   cursor: no-drop;
 }
-
 </style>

@@ -17,7 +17,9 @@
               <li class="name margin">{{ user.fullname }}</li>
             </div>
             <div id="hidden">
-              <li class="hidden"><i class="fa-solid fa-eye click"></i></li>
+              <li class="hidden" @click="openModal(user)">
+                <i class="fa-solid fa-eye click"></i>
+              </li>
             </div>
           </ul>
         </div>
@@ -31,11 +33,19 @@
       :items="dataUsers"
       @changePage="onChangePage"
     ></jw-pagination>
+
+    <Modal
+      v-show="modal"
+      id="modal"
+      @closeModal="closeModal"
+      :dados="dadosPessoais"
+    />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Modal from "../components/Modal.vue";
 
 const customLabels = {
   first: "",
@@ -52,14 +62,31 @@ export default {
       dataUsers: [],
       currentItens: [],
       customLabels,
-      mask: "###.###.###-##" 
+      mask: "###.###.###-##",
+      modal: false,
+      dados: {},
+      dadosPessoais: {},
     };
   },
+  components: {
+    Modal,
+  },
+  
   methods: {
     onChangePage(currentItens) {
       this.currentItens = currentItens;
     },
+
+    openModal(user) {
+        this.modal = true
+        this.dadosPessoais = user
+    },
+
+    closeModal() {
+      this.modal = false;
+    },
   },
+
   async mounted() {
     const response = await axios.get(this.url);
     this.dataUsers = response.data.users;
@@ -77,13 +104,12 @@ export default {
 }
 
 ::v-deep .page-number {
-  color: gray!important;
+  color: gray !important;
 }
 
-::v-deep .active{
-  color: black!important;
+::v-deep .active {
+  color: black !important;
   font-weight: 700;
-
 }
 
 .container {
@@ -149,5 +175,10 @@ ul li {
 
 .margin {
   margin-left: 20px;
+}
+
+.fa-eye:hover {
+  transform: scale(1.3);
+  transition: all 0.25s;
 }
 </style>
