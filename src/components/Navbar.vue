@@ -5,11 +5,11 @@
         <section id="btnNavRegister">
 
           <button @click="btnCadastro" class="button btnClickCadastro" v-if="cadastroClick">
-            <router-link to="/register" class="click clickBtn">Cadastro</router-link>
+            <router-link :to="{ name: 'register' }" class="click clickBtn">Cadastro</router-link>
           </button>
 
           <button @click="rawBntCadastro" class="button" v-else>
-            <router-link to="/register" class="rawBtnNav click">Cadastro</router-link>
+            <router-link :to="{ name: 'register' }" class="rawBtnNav click">Cadastro</router-link>
           </button>
 
         </section>
@@ -17,11 +17,11 @@
         <section id="btnNavUsers">
 
           <Button @click="bntListagem" class="button btnClickListagem" v-if="listagemClick">
-            <router-link to="/" class="click clickBtn">Listagem</router-link>
+            <router-link :to="{ name: 'users' }" class="click clickBtn">Listagem</router-link>
           </Button>
 
           <Button @click="rawBntListagem" class="button" v-else>
-            <router-link to="/" class="rawBtnNav click">Listagem</router-link>
+            <router-link :to="{ name: 'users' }" class="rawBtnNav click">Listagem</router-link>
           </Button>
 
         </section>

@@ -29,12 +29,22 @@
           </div>
           <div id="cpf">
             <label class="label">Cpf</label>
-            <input type="text" class="inpt" v-mask="cpfMask" v-model="form.cpf" />
+            <input
+              type="text"
+              class="inpt"
+              v-mask="cpfMask"
+              v-model="form.cpf"
+            />
             <span v-if="cpfError" class="error">Digite um cpf válido</span>
           </div>
           <div id="cell">
             <label class="label">Celular</label>
-            <input type="text" class="inpt" v-mask="cellMask" v-model="form.phone" />
+            <input
+              type="text"
+              class="inpt"
+              v-mask="cellMask"
+              v-model="form.phone"
+            />
             <span v-if="cellError" class="error"
               >Preencha este campo corretamente</span
             >
@@ -62,23 +72,11 @@
       </div>
     </div>
     <footer id="footer">
-      <button
-        class="btn"
-        id="save"
-        @click="
-          errorName(),
-            errorEmail(),
-            errorConfirm(),
-            errorCpf(),
-            errorCell(),
-            errorData(),
-            userCreate(form)
-        "
-      >
+      <button class="btn" id="save" @click="checkErrors, userCreate(form)">
         Salvar
       </button>
       <button class="btn" id="voltar">
-        <router-link to="/" class="link">Voltar</router-link>
+        <router-link :to="{ name: 'users' }" class="link">Voltar</router-link>
       </button>
     </footer>
   </div>
@@ -125,9 +123,7 @@ export default {
       var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
       if (reg.test(this.form.email)) {
-        return (
-          false, (this.emailError = false)
-        );
+        return false, (this.emailError = false);
       } else {
         this.emailError = true;
 
@@ -137,11 +133,9 @@ export default {
 
     errorConfirm() {
       if (this.form.email == this.form.confirm) {
-        return (
-          false, (this.confirmError = false)
-        );
+        return false, (this.confirmError = false);
       } else {
-        (this.confirmError = true);
+        this.confirmError = true;
         return true;
       }
     },
@@ -175,7 +169,7 @@ export default {
         this.cpfError = true;
         return true;
       } else {
-        return false, (this.cpfError = false)
+        return false, (this.cpfError = false);
       }
     },
 
@@ -184,9 +178,7 @@ export default {
         this.cellError = true;
         return true;
       } else {
-        return (
-          false, (this.cellError = false)
-        );
+        return false, (this.cellError = false);
       }
     },
 
@@ -195,19 +187,11 @@ export default {
         this.dateError = true;
         return true;
       } else {
-        return (
-          false, (this.dateError = false)
-        );
+        return false, (this.dateError = false);
       }
     },
 
     checkErrors() {
-      console.log(this.errorName() + " Nome")
-      console.log(this.errorEmail() + " Email")
-      console.log(this.errorConfirm() + " Confirmação")
-      console.log(this.errorCpf() + " Cpf")
-      console.log(this.errorCell() + " Celular")
-      console.log(this.errorData() + " Data")
       if (
         !this.errorName() &&
         !this.errorEmail() &&
@@ -216,10 +200,10 @@ export default {
         !this.errorCell() &&
         !this.errorData()
       ) {
-        console.log("verificar false")
+        console.log("verificar false");
         return false;
       } else {
-        console.log("verificar true")
+        console.log("verificar true");
         return true;
       }
     },
@@ -239,7 +223,7 @@ export default {
           throw "formError";
         } else {
           const response = await axios.post("/api/users", newUser);
-          this.$router.push("/");
+          this.$router.push({ name: 'users' });
         }
       } catch (error) {
         console.log(error);

@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     contact() {
-      if (this.dados.contacts == true) {
+      if (this.dados.contacts) {
         return true;
       } else {
         return false;
