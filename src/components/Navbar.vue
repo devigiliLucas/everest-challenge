@@ -12,14 +12,12 @@
               >Cadastro</router-link
             >
           </button>
-
           <button @click="rawBntCadastro" class="button" v-else>
             <router-link :to="{ name: 'register' }" class="rawBtnNav click"
               >Cadastro</router-link
             >
           </button>
         </section>
-
         <section id="btnNavUsers">
           <Button
             @click="bntListagem"
@@ -30,7 +28,6 @@
               >Listagem</router-link
             >
           </Button>
-
           <Button @click="rawBntListagem" class="button" v-else>
             <router-link :to="{ name: 'users' }" class="rawBtnNav click"
               >Listagem</router-link

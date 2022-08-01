@@ -16,7 +16,6 @@
           <label>Celular</label>
           <p class="dados">{{ dados.phone | VMask("(##) # ####-####") }}</p>
         </div>
-
         <div id="ctt">
           <label>Contato</label>
           <div id="contact">
@@ -30,7 +29,6 @@
             </div>
           </div>
         </div>
-
         <div id="email">
           <label>Email</label>
           <p class="dados">{{ dados.email }}</p>
@@ -41,12 +39,10 @@
           <label>CPF</label>
           <p class="dados">{{ dados.cpf | VMask("###.###.###-##") }}</p>
         </div>
-
         <div id="name">
           <label>Name</label>
           <p class="dados">{{ dados.fullname }}</p>
         </div>
-
         <div id="date">
           <label>Data</label>
           <p class="dados">{{ dados.birthDate | VMask("####/##/##") }}</p>
