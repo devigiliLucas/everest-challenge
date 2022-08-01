@@ -223,7 +223,7 @@ export default {
           throw "formError";
         } else {
           const response = await axios.post("/api/users", newUser);
-          this.$router.push({ name: 'users' });
+          this.$router.push({ name: "users" });
         }
       } catch (error) {
         console.log(error);

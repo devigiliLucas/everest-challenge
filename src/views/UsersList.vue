@@ -1,6 +1,6 @@
 <template>
   <div id="userList">
-     <div id="btnCadastro">
+    <div id="btnCadastro">
       <input
         type="button"
         value="Cadastrar novo usuário"
@@ -19,7 +19,7 @@
               <li class="cpf margin">
                 {{ user.cpf | VMask(mask) }}
               </li>
-            </div> 
+            </div>
             <div id="nome">
               <li class="name margin">{{ user.fullname }}</li>
             </div>
@@ -78,15 +78,15 @@ export default {
   components: {
     Modal,
   },
-  
+
   methods: {
     onChangePage(currentItens) {
       this.currentItens = currentItens;
     },
 
     openModal(user) {
-        this.modal = true
-        this.dadosPessoais = user
+      this.modal = true;
+      this.dadosPessoais = user;
     },
 
     closeModal() {
@@ -94,10 +94,10 @@ export default {
     },
   },
 
-   async mounted() {
+  async mounted() {
     const response = await axios.get(this.url);
     this.dataUsers = response.data.users;
-  },  
+  },
 };
 </script>
 
