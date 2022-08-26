@@ -11,33 +11,33 @@
 
 <script>
 export default {
-  name: 'Header',
-}
+  name: "Header",
+};
 </script>
 
 <style scoped>
-  .nav-container{
-    height: 7ch;
-    width: 100vw;
-    background-color: rgb(224, 43, 87);
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
+.nav-container {
+  height: 7ch;
+  width: 100%;
+  background-color: rgb(224, 43, 87);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-  #arrow{
-    width: 43vw;
-    color: white;
-  }
+#arrow {
+  width: 43vw;
+  color: white;
+}
 
-  #title{
-    width: 55vw;
-    font-weight: bold;
-    color: white;
-  }
+#title {
+  width: 55vw;
+  font-weight: bold;
+  color: white;
+}
 
-  .fa-arrow-left{
-    font-size: 20px;
-  }
+.fa-arrow-left {
+  font-size: 20px;
+}
 </style>

@@ -14,17 +14,21 @@
       <div id="rightColumn">
         <div id="cel">
           <label>Celular</label>
-          <p class="dados">{{ dados.phone | maskCell }}</p>
+          <p class="dados">{{ dados.phone | VMask("(##) # ####-####") }}</p>
         </div>
-
         <div id="ctt">
           <label>Contato</label>
-          <div id="cttLine">
-            <i class="fa-brands fa-whatsapp"></i>
-            <p class="dados">WhatsApp</p>
+          <div id="contact">
+            <div id="cttSms" v-if="contact">
+              <i class="fa-solid fa-message"></i>
+              <p class="dados">Sms e email</p>
+            </div>
+            <div id="cttWhatsApp" v-else>
+              <i class="fa-brands fa-whatsapp"></i>
+              <p class="dados">WhatsApp</p>
+            </div>
           </div>
         </div>
-
         <div id="email">
           <label>Email</label>
           <p class="dados">{{ dados.email }}</p>
@@ -33,17 +37,15 @@
       <div id="leftColumn">
         <div id="cpf">
           <label>CPF</label>
-          <p class="dados">{{ dados.cpf | maskCpf }}</p>
+          <p class="dados">{{ dados.cpf | VMask("###.###.###-##") }}</p>
         </div>
-
         <div id="name">
           <label>Name</label>
           <p class="dados">{{ dados.fullname }}</p>
         </div>
-
         <div id="date">
           <label>Data</label>
-          <p class="dados">{{ dados.birthDate }}</p>
+          <p class="dados">{{ dados.birthDate | VMask("####/##/##") }}</p>
         </div>
       </div>
     </div>
@@ -52,25 +54,26 @@
 
 <script>
 export default {
-    name: "Modal",
-    props: {
-        dados: {
-            type: Object,
-        },
+  name: "Modal",
+  props: {
+    dados: {
+      type: Object,
     },
-    methods: {
-        closeModal() {
-            this.$emit("closeModal");
-        },
+  },
+  computed: {
+    contact() {
+      if (this.dados.contacts) {
+        return true;
+      } else {
+        return false;
+      }
     },
-    filters: {
-        maskCpf(cpf) {
-            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-        },
-        maskCell(cell) {
-            return cell.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
-        },
+  },
+  methods: {
+    closeModal() {
+      this.$emit("closeModal");
     },
+  },
 };
 </script>
 
@@ -107,9 +110,9 @@ export default {
 }
 
 .btn:hover {
-    transform: scale(1.3);
-    transition: all 0.25s;
-    color: red;
+  transform: scale(1.3);
+  transition: all 0.25s;
+  color: red;
 }
 
 #contents {
@@ -143,9 +146,15 @@ label {
   justify-content: space-around;
 }
 
-#cttLine {
+#cttWhatsApp {
   display: flex;
   justify-content: space-between;
   width: 5vw;
+}
+
+#cttSms {
+  display: flex;
+  justify-content: space-between;
+  width: 5.8vw;
 }
 </style>
